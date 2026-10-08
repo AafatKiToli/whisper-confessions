@@ -2239,3 +2239,103 @@ input::placeholder {
     transition-duration: .01ms !important;
   }
 }
+/* =========================================================
+   RECIPIENT INPUT — MAKE IT CLEAR & FILLABLE
+========================================================= */
+
+.recipient-wrap {
+  flex: 1;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 0 12px;
+
+  min-height: 40px;
+
+  border: 1px solid rgba(111, 203, 237, .35);
+  border-radius: 9px;
+
+  background: rgba(6, 30, 54, .55);
+
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.recipient-wrap:focus-within {
+  border-color: var(--wine-light);
+
+  background: rgba(6, 30, 54, .75);
+
+  box-shadow: 0 0 0 2px rgba(255, 220, 76, .08);
+}
+
+.recipient-icon {
+  flex: none;
+
+  color: var(--wine-light);
+
+  font-size: 15px;
+}
+
+.recipient-wrap input {
+  flex: 1;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 7px 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #eaf7ff;
+
+  font-size: 11px;
+}
+
+.recipient-wrap input::placeholder {
+  color: #8eabc0;
+  opacity: 1;
+}
+
+
+/* MOBILE */
+@media (max-width: 650px) {
+
+  .recipient-wrap {
+    min-height: 38px;
+
+    padding: 0 9px;
+
+    border-radius: 8px;
+  }
+
+  .recipient-wrap input {
+    font-size: 8px;
+  }
+
+  .recipient-icon {
+    font-size: 13px;
+  }
+}
+
+
+/* SMALL PHONES */
+@media (max-width: 390px) {
+
+  .recipient-wrap {
+    min-height: 35px;
+    padding: 0 8px;
+  }
+
+  .recipient-wrap input {
+    font-size: 7.5px;
+  }
+}
