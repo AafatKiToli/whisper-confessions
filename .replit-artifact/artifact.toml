@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Whisper — Anonymous Confessions"
+description = "A quiet anonymous confession page with a private admin dashboard for reviewing and deleting submissions. This prototype stores data in the browser; true owner-only privacy requires server-side authentication and protected database rules."
+version = "1.0.0"
+id = "artifacts/whisper-confessions"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25527
+
+[services.development]
+run = "pnpm --filter @workspace/whisper-confessions run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/whisper-confessions", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/whisper-confessions/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25527"
+BASE_PATH = "/"

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="hi-Latn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#081a30">
+  <meta name="description" content="Gumnaam confession likhein. Chuninda confessions Instagram par share ho sakte hain; yeh prototype abhi post nahi karta.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Ccircle cx='18' cy='16' r='14' fill='%230d9fd8' stroke='%23fff' stroke-width='2'/%3E%3Cpath d='M5 19a13 13 0 0 0 26 0c-3 2-8 3-13 3S8 21 5 19Z' fill='%23fff'/%3E%3Cellipse cx='13' cy='11' rx='2.3' ry='3.3' fill='%23fff'/%3E%3Cellipse cx='23' cy='11' rx='2.3' ry='3.3' fill='%23fff'/%3E%3Ccircle cx='13' cy='12' r='1' fill='%23061a2e'/%3E%3Ccircle cx='23' cy='12' r='1' fill='%23061a2e'/%3E%3Ccircle cx='18' cy='16' r='2.1' fill='%23e94358'/%3E%3Cpath d='M18 18v7m-8-4-6 1m6 2-6 3m16-6 6 1m-6 2 6 3' fill='none' stroke='%23061a2e' stroke-width='1' stroke-linecap='round'/%3E%3Cpath d='M10 29q8 3 16 0' fill='none' stroke='%23e94358' stroke-width='2'/%3E%3Ccircle cx='18' cy='31' r='2.6' fill='%23ffdc4c' stroke='%23a87618'/%3E%3C/svg%3E">
+  <title>Whisper — Dil ki baat, bina naam</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="view home-view" id="homeView" aria-labelledby="homeTitle">
+      <header class="topbar">
+        <a class="wordmark" href="#" aria-label="Whisper home par wapas jaayein" data-home>
+          <svg class="doraemon-mark" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="16" r="14" fill="#119ed5" stroke="#f7fbff" stroke-width="2"/><path d="M5 19a13 13 0 0 0 26 0c-3 2-8 3-13 3S8 21 5 19Z" fill="#fff"/><ellipse cx="13" cy="11" rx="2.3" ry="3.3" fill="#fff"/><ellipse cx="23" cy="11" rx="2.3" ry="3.3" fill="#fff"/><circle cx="13" cy="12" r="1" fill="#10253b"/><circle cx="23" cy="12" r="1" fill="#10253b"/><circle cx="18" cy="16" r="2.1" fill="#e94358"/><path d="M18 18v7m-8-4-6 1m6 2-6 3m16-6 6 1m-6 2 6 3" fill="none" stroke="#10253b" stroke-width="1" stroke-linecap="round"/><path d="M10 29q8 3 16 0" fill="none" stroke="#e94358" stroke-width="2"/><circle cx="18" cy="31" r="2.6" fill="#ffdc4c" stroke="#a87618"/></svg>
+          <span>whisper<span class="wordmark-period">.</span></span>
+        </a>
+        <button class="text-link" type="button" data-view="login">Admin login <span aria-hidden="true">↗</span></button>
+      </header>
+
+      <div class="home-content">
+        <div class="intro">
+          <div class="eyebrow"><span class="eyebrow-line"></span> DIL KI BAAT KE LIYE CHHOTI SI JAGAH</div>
+          <h1 id="homeTitle">Jo <em>keh nahi paate,</em> yahan likho.</h1>
+          <p class="intro-copy">Kuch baatein kehna aasaan nahi hota.<br>Bata bs Soch mat.</p>
+          <img class="doraemon-hero" src="./Doremon.png" alt="Doraemon khushi se haath hila raha hai">
+        </div>
+
+        <form class="confession-card" id="confessionForm" novalidate>
+          <div class="card-topline"><span>AAPKI BAAT</span><span class="private-mark"><span class="tiny-dot"></span> GUMNAAM</span></div>
+          <label class="sr-only" for="confessionText">Aapka confession</label>
+          <textarea id="confessionText" name="confession" placeholder="Jo baat dil mein hai, yahan likho..." maxlength="4000" required></textarea>
+          <div class="form-divider"></div>
+          <div class="form-bottom">
+            <div class="recipient-wrap">
+              <span class="recipient-icon" aria-hidden="true">↗</span>
+              <label class="sr-only" for="recipient">His/Her User (optional)</label>
+              <input id="recipient" name="recipient" type="text" maxlength="100" placeholder="Jinke liye hai, unka naam (optional)...">
+            </div>
+            <button class="submit-button" type="submit"><span>Confession bhejo</span><span class="button-arrow" aria-hidden="true">→</span></button>
+          </div>
+          <p class="form-error" id="submitError" role="alert" hidden></p>
+          <div class="success-message" id="successMessage" role="status" aria-live="polite" hidden>
+            <span class="success-check" aria-hidden="true">✓</span> Aapki baat sun li gayi hai.
+          </div>
+        </form>
+        <p class="privacy-note"><span class="privacy-symbol" aria-hidden="true">—</span><span><strong>Instagram par sharing.</strong> Aapki Confession Humare Insta pr jayegi (aapka naam nai bolenge dw).</span></p>
+      </div>
+      <footer class="home-footer"><span>ARAAAM SE LIKHO</span><span class="footer-center">Yahin se shuruaat karein.</span><span>01 — 01</span></footer>
+    </section>
+
+    <section class="view login-view" id="loginView" aria-labelledby="loginTitle" hidden>
+      <header class="topbar">
+        <a class="wordmark" href="#" aria-label="Whisper home par wapas jaayein" data-home>
+          <svg class="doraemon-mark" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="16" r="14" fill="#119ed5" stroke="#f7fbff" stroke-width="2"/><path d="M5 19a13 13 0 0 0 26 0c-3 2-8 3-13 3S8 21 5 19Z" fill="#fff"/><ellipse cx="13" cy="11" rx="2.3" ry="3.3" fill="#fff"/><ellipse cx="23" cy="11" rx="2.3" ry="3.3" fill="#fff"/><circle cx="13" cy="12" r="1" fill="#10253b"/><circle cx="23" cy="12" r="1" fill="#10253b"/><circle cx="18" cy="16" r="2.1" fill="#e94358"/><path d="M18 18v7m-8-4-6 1m6 2-6 3m16-6 6 1m-6 2 6 3" fill="none" stroke="#10253b" stroke-width="1" stroke-linecap="round"/><path d="M10 29q8 3 16 0" fill="none" stroke="#e94358" stroke-width="2"/><circle cx="18" cy="31" r="2.6" fill="#ffdc4c" stroke="#a87618"/></svg><span>whisper<span class="wordmark-period">.</span></span>
+        </a>
+        <button class="text-link" type="button" data-view="home"><span aria-hidden="true">←</span> Whisper par wapas</button>
+      </header>
+      <div class="login-center">
+        <div class="login-card">
+          <div class="eyebrow"><span class="eyebrow-line"></span> SIRF ADMIN KE LIYE</div>
+          <h1 id="loginTitle">Wapas <em>swagat hai.</em></h1>
+          <p class="login-copy">Confessions sunne ke liye aapka apna kona.</p>
+          <form id="loginForm" novalidate>
+            <label for="adminEmail">Admin email</label>
+            <input id="adminEmail" name="email" type="email" autocomplete="username" placeholder="you@example.com" required>
+            <label for="adminPassword">Password</label>
+            <input id="adminPassword" name="password" type="password" autocomplete="current-password" placeholder="Apna password likhein" required>
+            <p class="login-error" id="loginError" role="alert" hidden></p>
+            <button class="submit-button login-submit" type="submit"><span>Andar jaayein</span><span class="button-arrow" aria-hidden="true">→</span></button>
+          </form>
+          <p class="demo-note">aare momos ki chutney tu admin hai joh login krne aaya hai.</p>
+        </div>
+      </div>
+      <footer class="home-footer"><span>WHISPER / ADMIN</span><span class="footer-center">Yahin se shuruaat karein.</span><span>01 — 01</span></footer>
+    </section>
+
+    <section class="view dashboard-view" id="dashboardView" aria-labelledby="dashboardTitle" hidden>
+      <header class="dashboard-header">
+        <a class="wordmark" href="#" aria-label="Whisper home par wapas jaayein" data-home>
+          <svg class="doraemon-mark" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="16" r="14" fill="#119ed5" stroke="#f7fbff" stroke-width="2"/><path d="M5 19a13 13 0 0 0 26 0c-3 2-8 3-13 3S8 21 5 19Z" fill="#fff"/><ellipse cx="13" cy="11" rx="2.3" ry="3.3" fill="#fff"/><ellipse cx="23" cy="11" rx="2.3" ry="3.3" fill="#fff"/><circle cx="13" cy="12" r="1" fill="#10253b"/><circle cx="23" cy="12" r="1" fill="#10253b"/><circle cx="18" cy="16" r="2.1" fill="#e94358"/><path d="M18 18v7m-8-4-6 1m6 2-6 3m16-6 6 1m-6 2 6 3" fill="none" stroke="#10253b" stroke-width="1" stroke-linecap="round"/><path d="M10 29q8 3 16 0" fill="none" stroke="#e94358" stroke-width="2"/><circle cx="18" cy="31" r="2.6" fill="#ffdc4c" stroke="#a87618"/></svg><span>whisper<span class="wordmark-period">.</span></span>
+        </a>
+        <div class="admin-identity"><span class="online-dot" aria-hidden="true"></span><span id="adminEmailLabel"></span></div>
+        <button class="text-link logout-button" id="logoutButton" type="button">Bahar niklein <span aria-hidden="true">↗</span></button>
+      </header>
+      <div class="dashboard-main">
+        <div class="dashboard-heading">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> DIL SE SUNNE KI JAGAH</div><h1 id="dashboardTitle">Yahan chhodi gayi <em>baatein.</em></h1><p>Is device par save hui confessions.</p></div>
+          <div class="count-card"><span class="count-label">KUL CONFESSIONS</span><strong id="totalCount">0</strong><span class="count-caption">isi browser mein</span></div>
+        </div>
+        <section class="records-panel" aria-labelledby="recordsTitle">
+          <div class="records-heading"><div><h2 id="recordsTitle">Naye confessions</h2><p>Data sirf isi browser mein save hai.</p></div><span class="record-count" id="recordCount">0 CONFESSIONS</span></div>
+          <div class="records-scroll" id="recordsList" tabindex="0" aria-label="Confessions ki list"></div>
+        </section>
+        <p class="dashboard-warning"><span aria-hidden="true">!</span> Demo hai. Is browser ko use karne wala koi bhi in confessions ko dekh ya badal sakta hai.</p>
+      </div>
+      <footer class="home-footer"><span>WHISPER / ADMIN</span><span class="footer-center">Aapki baat, dhyaan se suni.</span><span>LOCAL DEMO</span></footer>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="deleteModal" hidden>
+    <section class="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="deleteTitle" aria-describedby="deleteDescription">
+      <div class="modal-icon" aria-hidden="true">×</div>
+      <h2 id="deleteTitle">Yeh confession mita dein?</h2>
+      <p id="deleteDescription">Yeh note is browser se hamesha ke liye delete ho jayega.</p>
+      <div class="modal-actions">
+        <button class="secondary-button" id="cancelDelete" type="button">Rehne dein</button>
+        <button class="delete-confirm-button" id="confirmDelete" type="button">Haan, delete karein</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
